@@ -1,13 +1,13 @@
 import asyncio
 from team.analyzer_gpt import get_analyzer_gpt_team
 from config.openai_model_client import get_model_client
-from config.docker_utils import getDockercommandlineexecutor, start_docker_container, stop_docker_container
+from config.docker_utils import get_docker_executor, start_docker_container, stop_docker_container
 from autogen_agentchat.messages import TextMessage
 from autogen_agentchat.base import TaskResult
 
 async def main():
     openai_model_client = get_model_client()
-    docker = getDockercommandlineexecutor()
+    docker = get_docker_executor()
 
     team = get_analyzer_gpt_team(docker, openai_model_client)
 

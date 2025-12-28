@@ -23,10 +23,15 @@ here-is-the-code
 3. After writing the code, pause and wait for code executor to run it before continuing.
 
 4. If any library is not installed in the env, please make sure to do the same by providing a
-shell script and use pip to install (like pip install pandas) and after that send the code again 
-without worrying about output.
+bash script and use pip to install (like pip install pandas) and after that send the code again 
+without worrying about output. Install the required missing libraries like below
+```bash
+pip install pandas matplotlib
+```
 
 5. If code ran successfully, then analyze the output and continue as needed.
+
+6. When you are asked to do an analysis having image or chart, save a analysis file, use matplotlib and save the file strictly as output.png
 
 Once we have completed the task please mention 'STOP' after delivering and explaining the final answer.
 

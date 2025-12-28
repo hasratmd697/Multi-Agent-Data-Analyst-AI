@@ -3,7 +3,7 @@ from autogen_ext.code_executors.docker import DockerCommandLineCodeExecutor
 from config.constants import WORK_DIR_DOCKER, TIMEOUT_DOCKER
 
 
-def getDockercommandlineexecutor():
+def get_docker_executor():
     docker = DockerCommandLineCodeExecutor(
         work_dir=WORK_DIR_DOCKER,
         timeout=TIMEOUT_DOCKER,
