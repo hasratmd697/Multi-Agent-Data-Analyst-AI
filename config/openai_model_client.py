@@ -10,10 +10,10 @@ def get_model_client():
     """
     Configure OpenAI-compatible client for OpenRouter API
     Base URL: https://openrouter.ai/api/v1
-    Model: google/gemini-2.0-flash-001 (or any other OpenRouter model)
+    Model: qwen/qwen3-coder-480b-a35b:free - Best for agentic coding & data analysis
     """
     openai_model_client = OpenAIChatCompletionClient(
-        model="google/gemini-2.0-flash-001",
+        model="qwen/qwen3-coder-480b-a35b:free",
         api_key=api_key,
         base_url="https://openrouter.ai/api/v1",
         max_retries=5,  # Retry on transient 500 errors
@@ -29,7 +29,7 @@ def get_model_client():
             "function_calling": True,
             "json_output": True,
             "structured_output": True,
-            "family": "gemini"
+            "family": "qwen"
         }
     )
     return openai_model_client

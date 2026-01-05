@@ -34,23 +34,24 @@ async def run_analyzer_gpt(docker,openai_model_client,task):
                 print(msg := f"{message.source} : {message.content}")
                 #yield msg
                 
-                if msg.startswith("User"):
+                if msg.startswith("user") or msg.startswith("User"):
                     with st.chat_message("user", avatar='👤'):
                         st.markdown(msg)
-                elif msg.startswith("Data Analyzer Agent"):
+                elif msg.startswith("Data_Analyzer_Agent"):
                     with st.chat_message("Data Analyst Agent", avatar='🤖'):
                         st.markdown(msg)
-                elif msg.startswith("Code Executor Agent"):
+                elif msg.startswith("CodeExecutor"):
                     with st.chat_message('Code Runner Agent', avatar='👨‍💻'):
+                        st.markdown(msg)
+                else:
+                    # Catch-all for any other messages
+                    with st.chat_message("assistant", avatar='🔧'):
                         st.markdown(msg)
                 st.session_state.message.append(msg)    
                 
             elif isinstance(message, TaskResult):
-                print(msg := f"Stop Reason: {message.stop_reason}")
-                #yield msg
-                with st.chat_message('Code Runner Agent', avatar='👨‍💻'):
-                    st.markdown(msg)
-                    st.session_state.message.append(msg)
+                # Log stop reason to console for debugging, but don't show to user
+                print(f"Stop Reason: {message.stop_reason}")
                 
         st.session_state.autogen_team_state = await team.save_state()
         return None
@@ -67,7 +68,19 @@ if uploaded_file is not None:
 
 if st.session_state.message:
     for msg in st.session_state.message:
-        st.markdown(msg)
+        if msg.startswith("user") or msg.startswith("User"):
+            with st.chat_message("user", avatar='👤'):
+                st.markdown(msg)
+        elif msg.startswith("Data_Analyzer_Agent"):
+            with st.chat_message("Data Analyst Agent", avatar='🤖'):
+                st.markdown(msg)
+        elif msg.startswith("CodeExecutor"):
+            with st.chat_message('Code Runner Agent', avatar='👨‍💻'):
+                st.markdown(msg)
+        elif not msg.startswith("Stop Reason"):
+            # Show any other messages except Stop Reason
+            with st.chat_message("assistant", avatar='🔧'):
+                st.markdown(msg)
 
 if task:
     if uploaded_file is not None and task:
@@ -83,7 +96,7 @@ if task:
     
     error = asyncio.run(run_analyzer_gpt(docker, openai_model_client, task))
     if error:
-        st.error("An error occurred: ", error)
+        st.error(f"An error occurred: {error}")
 
     if os.path.exists("temp/output.png"):
         st.image("temp/output.png",caption="Analysis File")

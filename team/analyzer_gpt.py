@@ -13,7 +13,7 @@ def get_analyzer_gpt_team(docker, model_client):
 
     team = RoundRobinGroupChat(
         participants = [data_analyzer_agent,code_executor_agent],
-        max_turns = 5,
+        max_turns = 15,
         termination_condition=text_mention_termination
     )
 

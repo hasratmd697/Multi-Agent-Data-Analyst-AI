@@ -112,15 +112,20 @@ python main.py "Analyze titanic.csv and plot survival rate by gender"
 
 The LLM client is configured in `config/openai_model_client.py`:
 
-- **Model**: `google/gemini-2.0-flash-001` (changeable via OpenRouter)
+- **Model**: `qwen/qwen3-coder-480b-a35b:free` - Optimized for agentic coding & data analysis
 - **Base URL**: `https://openrouter.ai/api/v1`
 - **Retry Logic**: 5 retries with 120s timeout for reliability
+- **Max Turns**: 15 turns for complex multi-step analysis
 
 ## Recent Updates
 
+- ✅ Upgraded to **Qwen3 Coder 480B** - state-of-the-art free coding model
+- ✅ Fixed **agent message display** with proper name matching (Data_Analyzer_Agent, CodeExecutor)
+- ✅ Removed **internal stop reason messages** from user-facing UI
+- ✅ Increased **max_turns to 15** for complex multi-step analysis tasks
+- ✅ Added **catch-all message display** for any unrecognized agent messages
 - ✅ Migrated from OpenAI/Gemini to **OpenRouter API** for flexible model selection
 - ✅ Added **Streamlit chat interface** with session state management
-- ✅ Implemented **emoji avatars** for visual agent distinction
+- ✅ Implemented **emoji avatars** for visual agent distinction (👤 🤖 👨‍💻)
 - ✅ Added **automatic chart display** (`output.png`) in the UI
-- ✅ Added **retry logic** (5 retries) for handling transient API errors
 - ✅ Improved **error handling** and user feedback
