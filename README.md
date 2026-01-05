@@ -4,6 +4,9 @@ This project is a sophisticated AI-powered data analysis tool that leverages a m
 
 Built with Microsoft's AutoGen framework, this system uses a team of specialized AI agents that collaborate to perform complex data analysis tasks, providing insights from datasets based on simple user prompts.
 
+<img width="1920" height="947" alt="Screenshot 2026-01-06 003036" src="https://github.com/user-attachments/assets/9c100d0e-bef9-4e2e-b2e6-6ccbd59f1f07" />
+
+
 ## Features
 
 - **Streamlit Web Interface**: Modern chat-based UI with real-time agent conversations
